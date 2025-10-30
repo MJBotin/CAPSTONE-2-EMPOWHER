@@ -3,42 +3,51 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Hash;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\User>
  */
 class UserFactory extends Factory
 {
-    /**
-     * The current password being used by the factory.
-     */
-    protected static ?string $password;
-
-    /**
-     * Define the model's default state.
-     *
-     * @return array<string, mixed>
-     */
     public function definition(): array
-    {
-        return [
-            'name' => fake()->name(),
-            'email' => fake()->unique()->safeEmail(),
-            'email_verified_at' => now(),
-            'password' => static::$password ??= Hash::make('password'),
-            'remember_token' => Str::random(10),
-        ];
-    }
+{
+    return [
+        'last_name' => $this->faker->lastName(),
+        'first_name' => $this->faker->firstName(),
+        'middle_name' => $this->faker->optional()->firstName(),
+        'suffix' => $this->faker->optional()->randomElement(['Jr.', 'Sr.', 'III']),
+        'birthdate' => $this->faker->date('Y-m-d', '2005-01-01'),
+        'place_of_birth' => $this->faker->city(),
+        'gender' => $this->faker->randomElement(['Male', 'Female']),
+        'civil_status' => $this->faker->randomElement(['Single', 'Married', 'Widowed', 'Divorced']),
+        'citizenship' => 'Filipino',
+        'email' => $this->faker->unique()->safeEmail(),
+        'contact_number' => $this->faker->numerify('09#########'),
+        'address' => $this->faker->address(),
+        'username' => $this->faker->unique()->userName(),
+        'password' => bcrypt('Password@123'),
+        'user_type' => $this->faker->randomElement(['user', 'admin', 'super admin']),
+    ];
+}
 
-    /**
-     * Indicate that the model's email address should be unverified.
-     */
-    public function unverified(): static
+
+    public function admin(): static
     {
         return $this->state(fn (array $attributes) => [
-            'email_verified_at' => null,
+            'user_type' => 'admin',
+        ]);
+    }
+
+
+    public function superAdmin(): static
+    {
+        return $this->state(fn (array $attributes) => [
+            'user_type' => 'super admin',
         ]);
     }
 }
+
+
+
