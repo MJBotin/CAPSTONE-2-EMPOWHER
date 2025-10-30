@@ -27,27 +27,12 @@ class UserFactory extends Factory
         'contact_number' => $this->faker->numerify('09#########'),
         'address' => $this->faker->address(),
         'username' => $this->faker->unique()->userName(),
-        'password' => bcrypt('Password@123'),
+        'password' => Hash::make('Password@123'),
+        'remember_token' => Str::random(10),
         'user_type' => $this->faker->randomElement(['user', 'admin', 'super admin']),
     ];
 }
 
-
-    public function admin(): static
-    {
-        return $this->state(fn (array $attributes) => [
-            'user_type' => 'admin',
-        ]);
-    }
-
-
-    public function superAdmin(): static
-    {
-        return $this->state(fn (array $attributes) => [
-            'user_type' => 'super admin',
-        ]);
-    }
 }
-
 
 
