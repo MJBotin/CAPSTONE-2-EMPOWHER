@@ -19,6 +19,8 @@ class DatabaseSeeder extends Seeder
             DocumentRequestSeeder::class,
             AnnouncementSeeder::class,
             BarangayOfficialSeeder::class,
+            AuditLogSeeder::class,
+
         ]);
     }
 
