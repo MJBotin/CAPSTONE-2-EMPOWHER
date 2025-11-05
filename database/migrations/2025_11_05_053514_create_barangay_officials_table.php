@@ -8,13 +8,13 @@ return new class extends Migration
 {
     public function up(): void
     {
-        Schema::create('announcements', function (Blueprint $table) {
+        Schema::create('barangay_officials', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
-            $table->text('content');
-            $table->timestamp('date_started');
-            $table->timestamp('date_end');
-            $table->enum('status', ['active', 'inactive'])->default('active');
+            $table->string('last_name');
+            $table->string('first_name');
+            $table->char('middle_initial', 1)->nullable();
+            $table->string('position');
+            $table->string('photo_path')->nullable();
             $table->foreignId('created_by')->constrained('users')->onDelete('cascade');
             $table->softDeletes();
             $table->timestamps();
@@ -23,6 +23,7 @@ return new class extends Migration
 
     public function down(): void
     {
-        Schema::dropIfExists('announcements');
+        Schema::dropIfExists('barangay_officials');
     }
 };
+

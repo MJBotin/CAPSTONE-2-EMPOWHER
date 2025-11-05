@@ -18,8 +18,8 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             DocumentRequestSeeder::class,
             AnnouncementSeeder::class,
+            BarangayOfficialSeeder::class,
         ]);
     }
-
 
 }
