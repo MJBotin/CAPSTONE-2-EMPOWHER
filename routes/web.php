@@ -28,3 +28,11 @@ Route::middleware('auth')->group(function () {
     Route::put('/users/{id}/decline', [UserController::class, 'decline'])->name('users.decline');
     Route::put('/users/{id}/archive', [UserController::class, 'archive'])->name('users.archive');
 });
+
+Route::get('/register', function () {
+    return view('auth.register');
+});
+
+Route::get('/privacy-policy', function () {
+    return view('pages.privacy-policy');
+})->name('privacy.policy');
