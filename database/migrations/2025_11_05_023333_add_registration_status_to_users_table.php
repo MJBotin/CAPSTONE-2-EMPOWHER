@@ -7,20 +7,17 @@ use Illuminate\Support\Facades\Schema;
 return new class extends Migration
 {
     public function up(): void
-    {
-        Schema::table('users', function (Blueprint $table) {
-            if (!Schema::hasColumn('users', 'registration_status')) {
-                $table->string('registration_status')->default('pending');
-            }
-        });
-    }
+{
+    Schema::table('users', function (Blueprint $table) {
+        $table->dropColumn('registration_status'); 
+    });
+}
 
-    public function down(): void
-    {
-        Schema::table('users', function (Blueprint $table) {
-            if (Schema::hasColumn('users', 'registration_status')) {
-                $table->dropColumn('registration_status');
-            }
-        });
-    }
+public function down(): void
+{
+    Schema::table('users', function (Blueprint $table) {
+        $table->enum('registration_status', ['pending', 'approved', 'declined'])->default('pending');
+    });
+}
+
 };
