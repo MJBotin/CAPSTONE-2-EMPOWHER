@@ -20,7 +20,6 @@ class DocumentRequest extends Model
         'processed_by',
     ];
 
-    // Relationships
     public function resident()
     {
         return $this->belongsTo(User::class, 'resident_id');
