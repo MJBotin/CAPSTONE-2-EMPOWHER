@@ -20,8 +20,8 @@ class PageController extends Controller
             ->where(function ($query) use ($now) {
                 $query->where('end_date', '>=', $now)
                     ->orWhereNull('end_date');
-            })
-            ->orderBy(DB::raw('ISNULL(start_date)'), 'asc')
+             })
+            ->orderByRaw('CASE WHEN start_date IS NULL THEN 0 ELSE 1 END ASC')
             ->orderBy('start_date', 'desc')
             ->orderBy('created_at', 'desc')
             ->take(5)
