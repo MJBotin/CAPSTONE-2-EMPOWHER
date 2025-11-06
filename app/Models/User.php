@@ -2,47 +2,51 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
-    /** @use HasFactory<\Database\Factories\UserFactory> */
-    use HasFactory, Notifiable;
+    use HasFactory, SoftDeletes, Notifiable;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var list<string>
-     */
-    protected $fillable = [
-        'name',
-        'email',
-        'password',
-    ];
 
-    /**
-     * The attributes that should be hidden for serialization.
-     *
-     * @var list<string>
-     */
+protected $fillable = [
+    'first_name',
+    'last_name',
+    'middle_name',
+    'suffix',
+    'username',
+    'gender',
+    'birthdate', 
+    'civil_status',
+    'place_of_birth',
+    'citizenship',
+    'contact_number',
+    'email',
+    'address',
+    'password',
+    'user_type',
+    'profile_photo',
+    'id_front_photo',
+    'id_back_photo',
+    'registration_status', 
+];
+
     protected $hidden = [
         'password',
         'remember_token',
     ];
 
-    /**
-     * Get the attributes that should be cast.
-     *
-     * @return array<string, string>
-     */
-    protected function casts(): array
+    protected $casts = [
+        'birthdate' => 'date',
+        'email_verified_at' => 'datetime',
+        'password' => 'hashed',
+    ];
+
+    public function announcements()
     {
-        return [
-            'email_verified_at' => 'datetime',
-            'password' => 'hashed',
-        ];
+        return $this->hasMany(\App\Models\Announcement::class, 'created_by');
     }
 }
