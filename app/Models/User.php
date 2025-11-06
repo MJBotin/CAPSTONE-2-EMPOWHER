@@ -11,24 +11,28 @@ class User extends Authenticatable
 {
     use HasFactory, SoftDeletes, Notifiable;
 
-    protected $fillable = [
-        'last_name',
-        'first_name',
-        'middle_name',
-        'suffix',
-        'birthdate',
-        'place_of_birth',
-        'gender',
-        'civil_status',
-        'citizenship',
-        'email',
-        'contact_number',
-        'address',
-        'username',
-        'password',
-        'user_type',
-        'registration_status', // <--- Add this line here!
-    ];
+
+protected $fillable = [
+    'first_name',
+    'last_name',
+    'middle_name',
+    'suffix',
+    'username',
+    'gender',
+    'birthdate', 
+    'civil_status',
+    'place_of_birth',
+    'citizenship',
+    'contact_number',
+    'email',
+    'address',
+    'password',
+    'user_type',
+    'profile_photo',
+    'id_front_photo',
+    'id_back_photo',
+    'registration_status', 
+];
 
     protected $hidden = [
         'password',
