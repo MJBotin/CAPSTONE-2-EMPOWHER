@@ -41,3 +41,7 @@ Route::get('/user-homepage', function () {
 Route::get('/user-document-request', function () {
     return view('user-document-request');
 });
+
+Route::get('/user-profile', function () {
+    return view('user-profile');
+});
