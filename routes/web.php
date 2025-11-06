@@ -14,6 +14,12 @@ Route::get('/register', function () {
     return view('auth.register');
 })->name('register');   
 
+// in routes/web.php
+
+Route::get('/login', function () {
+    return view('auth.login');
+})->name('login'); // <-- This '.name('login')' is crucial
+
 Route::get('/password/request', function () {
     return view('auth.passwords.email');
 })->name('password.request');

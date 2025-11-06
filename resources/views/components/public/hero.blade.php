@@ -11,9 +11,11 @@
     <div
         class="hero-content text-center text-neutral-content relative flex flex-col justify-center items-center w-full">
         <div class="max-w-2xl">
-            <button class="btn btn-lg bg-blue-700 hover:bg-blue-800 text-white border-none mt-50">
-                REGISTER TO ACCESS BARANGAY SERVICES →
-            </button>
+           <a href="{{ route('register') }}">
+         <button class="btn btn-lg bg-blue-700 hover:bg-blue-800 text-white border-none mt-50">
+        REGISTER TO ACCESS BARANGAY SERVICES →
+        </button>
+        </a>
         </div>
     </div>
 </div>
