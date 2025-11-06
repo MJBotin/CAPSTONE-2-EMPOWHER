@@ -12,8 +12,9 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->text('content');
-            $table->timestamp('date_started');
-            $table->timestamp('date_end');
+            $table->string('image_path')->nullable();
+            $table->date('start_date')->nullable();
+            $table->date('end_date')->nullable();
             $table->enum('status', ['active', 'inactive'])->default('active');
             $table->foreignId('created_by')->constrained('users')->onDelete('cascade');
             $table->softDeletes();
