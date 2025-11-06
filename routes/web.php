@@ -32,3 +32,8 @@ Route::middleware('auth')->group(function () {
 Route::get('/privacy-policy', function () {
     return view('pages.privacy-policy');
 })->name('privacy.policy');
+
+
+Route::get('/user-homepage', function () {
+    return view('user-homepage');
+});
