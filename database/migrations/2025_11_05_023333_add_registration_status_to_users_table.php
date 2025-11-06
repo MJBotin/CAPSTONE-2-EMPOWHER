@@ -9,14 +9,14 @@ return new class extends Migration
     public function up(): void
 {
     Schema::table('users', function (Blueprint $table) {
-        $table->dropColumn('registration_status'); 
+        $table->enum('registration_status', ['pending', 'approved', 'declined'])->default('pending');
     });
 }
 
 public function down(): void
 {
     Schema::table('users', function (Blueprint $table) {
-        $table->enum('registration_status', ['pending', 'approved', 'declined'])->default('pending');
+        $table->dropColumn('registration_status');
     });
 }
 
