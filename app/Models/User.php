@@ -27,6 +27,7 @@ class User extends Authenticatable
         'username',
         'password',
         'user_type',
+        'registration_status', // <--- Add this line here!
     ];
 
     protected $hidden = [
@@ -39,9 +40,9 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
     public function announcements()
     {
-    return $this->hasMany(\App\Models\Announcement::class, 'created_by');
+        return $this->hasMany(\App\Models\Announcement::class, 'created_by');
     }
-
 }
