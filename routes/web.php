@@ -37,3 +37,7 @@ Route::get('/privacy-policy', function () {
 Route::get('/user-homepage', function () {
     return view('user-homepage');
 });
+
+Route::get('/user-document-request', function () {
+    return view('user-document-request');
+});

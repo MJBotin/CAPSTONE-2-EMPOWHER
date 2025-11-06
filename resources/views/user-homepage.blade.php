@@ -139,7 +139,7 @@
       const requestBtn = document.getElementById('requestDocumentBtn');
       if (requestBtn) {
         requestBtn.addEventListener('click', () => {
-          window.location.href = 'document-request-table';
+          window.location.href = 'user-document-request';
         });
       }
     });
