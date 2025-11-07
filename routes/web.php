@@ -58,3 +58,13 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::delete('/officials/{official}', [AdminController::class, 'officialsDestroy'])->name('officials.destroy');
 });
 
+
+
+
+Route::get('/user-homepage', function () {
+    return view('user-homepage');
+});
+
+Route::get('/user-document-request', function () {
+    return view('user-document-request');
+});
