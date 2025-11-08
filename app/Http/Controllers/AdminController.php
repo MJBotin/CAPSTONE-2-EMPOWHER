@@ -49,6 +49,7 @@ class AdminController extends Controller
     public function announcementsStore(Request $request)
     {
         $validatedData = $request->validate(['title' => 'required|string|max:255', 'content' => 'required|string', 'start_date' => 'nullable|date', 'end_date' => 'nullable|date|after_or_equal:start_date']);
+        $validatedData['created_by'] = auth()->id();
         Announcement::create($validatedData);
         return redirect()->route('admin.announcements.index');
     }
@@ -75,6 +76,7 @@ class AdminController extends Controller
             $path = $request->file('photo_path')->store('officials', 'public');
             $validatedData['photo_path'] = $path;
         }
+        $validatedData['created_by'] = auth()->id();
         Official::create($validatedData);
         return redirect()->route('admin.officials.index');
     }

@@ -13,5 +13,6 @@ class Official extends Model
         'position',
         'photo_path',
         'display_order',
+        'created_by',
     ];
 }

@@ -2,7 +2,7 @@
   class="fixed z-50 right-[calc(1rem+env(safe-area-inset-right))]
                    bottom-[calc(1rem+env(safe-area-inset-bottom))]
                    size-12 rounded-full grid place-items-center
-                   bg-primary text-primary-content shadow-2xl
+                   bg-[#232c54] text-white shadow-2xl
                    ring-2 ring-white hover:scale-[1.03] active:scale-95 transition"
   aria-controls="faq-chat" aria-expanded="false" aria-label="Open FAQ chat">
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
