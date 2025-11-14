@@ -42,6 +42,11 @@ Route::get('/user-document-request', function () {
     return view('user-document-request');
 });
 
+Route::get('/user-complaint', function () {
+    return view('user-complaint');
+});
+
 Route::get('/user-profile', function () {
     return view('user-profile');
 });
+

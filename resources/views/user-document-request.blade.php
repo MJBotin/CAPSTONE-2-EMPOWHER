@@ -5,31 +5,32 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Document Request Dashboard</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <style>
-   /* Background blur + brightness when modal is open */
-body.modal-open #pageContent {
-  filter: blur(1px) brightness(1);
-  transition: all 0.3s ease-in-out;
-  pointer-events: none;
-}
 
-/* Semi-transparent white overlay behind the modal */
-.modal-backdrop {
-  position: fixed;
-  inset: 0;
-  background: white; /* light white overlay */
-  backdrop-filter: blur(7px);
-  transition: all 0.3s ease-in-out;
-  z-index: 40;
+<style>
+  
+    body.modal-open #pageContent {
+      filter: blur(1px) brightness(1);
+      transition: all 0.3s ease-in-out;
+      pointer-events: none;
+    }     
 
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(255, 255, 255, 0.6); 
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      z-index: 40;
     }
-    /* allow pointer events for form elements inside modals (so inputs still work) */
+
     .modal-inner * { pointer-events: auto; }
 
-    /* ensure dropdown z-index under modal overlay */
     #dropdownMenu { z-index: 30; }
-  </style>
+
+</style>
+
 </head>
+
 <body class="bg-[#f6f3ee] font-sans">
 
   <!-- Top Navbar -->
@@ -162,12 +163,12 @@ body.modal-open #pageContent {
 
  <!-- MODAL 1: Barangay Certificate -->
 <div id="modalCertificate" class="hidden fixed inset-0 flex items-center justify-center z-50 bg-black/50">
-  <div class="bg-[#f5f0e8] border-2 border-black w-[500px] h-[550px] rounded-3xl overflow-hidden flex flex-col">
+  <div class="bg-[#f5f0e8] border-1 border-black w-[500px] h-[550px] rounded-3xl overflow-hidden flex flex-col">
 
     <!-- Header -->
-    <div class="bg-[#2e5478] flex items-center px-4 py-2 rounded-t-3xl">
-      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSxqDxTyUPRaADhPEUlOlFYUnvFckf-ruIw5Q&sg" class="w-8 h-8 rounded-full border-2 border-white object-cover mr-3">
-      <h1 class="text-white font-bold text-sm">Barangay Daang Bakal</h1>
+    <div class="bg-[#2e5478] flex items-center px-4 py-3 rounded-t-3xl">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSxqDxTyUPRaADhPEUlOlFYUnvFckf-ruIw5Q&sg" class="w-10 h-10 rounded-full border-2 border-white object-cover mr-3">
+      <h1 class="text-white font-sans font-bold">Barangay Daang Bakal</h1>
     </div>
 
     <!-- Body -->
@@ -175,59 +176,65 @@ body.modal-open #pageContent {
     
  
       <div>
-        <h2 class="text-center text-lg font-bold mb-8 text-gray-800">
+        <h2 class="text-center text-lg font-bold mb-10 text-gray-900">
           APPLICATION FORM FOR BARANGAY CERTIFICATE
         </h2>
-           <br>
+      
         <form class="space-y-8">
           <div class="flex items-center justify-between">
-            <label class="text-sm font-medium text-gray-800 w-[45%]">Length of Residency <span class="text-red-500">*</span></label>
-            <input type="text" placeholder="e.g. 5 years" class="w-[60%] border border-black rounded-sm px-3 py-1.5 text-sm focus:ring-blue-500 focus:outline-none">
+            <label class="text-m font-medium text-gray-900 w-[45%]">Length of Residency:</label>
+            <input type="text" placeholder="e.g. 5 years" class="w-[60%] border border-black rounded-sm px-3 py-2 text-sm focus:ring-blue-500 focus:outline-none">
           </div>
 
           <div class="flex items-center justify-between">
-            <label class="text-sm font-medium text-gray-800 w-[45%]">Valid ID Number <span class="text-red-500">*</span></label>
-            <input type="text" placeholder="e.g. 123456789" class="w-[60%] border border-black rounded-sm px-3 py-1.5 text-sm focus:ring-blue-500 focus:outline-none">
+            <label class="text-m font-medium text-gray-900 w-[45%]">Valid ID Number:</label>
+            <input type="text" placeholder="e.g. 123456789" class="w-[60%] border border-black rounded-sm px-3 py-2 text-sm focus:ring-blue-500 focus:outline-none">
           </div>
 
           <div class="flex items-center justify-between">
-            <label class="text-sm font-medium text-gray-800 w-[45%]">Registered Voter <span class="text-red-500">*</span></label>
-            <select class="w-[60%] border border-black rounded-sm px-3 py-1.5 text-sm focus:ring-blue-500 focus:outline-none">
-              <option>Select</option><option>Yes</option><option>No</option>
-            </select>
+            <label class="text-m font-medium text-gray-900 w-[45%]">Registered Voter:</label>
+          <select id="registeredVoter" 
+              class="w-[60%] border border-black rounded-sm px-3 py-1.5 text-sm text-gray-400"
+              onchange="this.classList.remove('text-gray-400'); this.classList.add('text-gray-900');">
+              <option value="" disabled selected hidden>Select</option>
+              <option value="yes">Yes</option>
+              <option value="no">No</option>
+          </select>
+
           </div>
 
           <div class="flex items-center justify-between">
-            <label class="text-sm font-medium text-gray-800 w-[45%]">Purpose of Request <span class="text-red-500">*</span></label>
-            <input type="text" placeholder="e.g. Employment Requirement" class="w-[60%] border border-black rounded-sm px-3 py-1.5 text-sm focus:ring-blue-500 focus:outline-none">
+            <label class="text-m font-medium text-gray-900 w-[45%]">Purpose of Request:</label>
+            <input type="text" placeholder="e.g. Employment Requirement......." class="w-[60%] border border-black rounded-sm px-3 py-6 text-sm focus:ring-blue-500 focus:outline-none">
           </div>
 
-          <div class="flex items-start mt-4">
-            <input type="checkbox" class="mt-1.5 mr-2 border-gray-400 rounded">
-            <label class="text-xs text-gray-600 leading-snug">I certify that the information provided above is accurate and complete to the best of my knowledge.</label>
+        
+          <div class="flex items-start mt-5">
+            <input type="checkbox" class="mt-1 mr-2 border-gray-400 rounded">
+            <label class="text-[9.5px] text-gray-600 leading-snug">I certify that the information provided above is accurate and complete to the best of my knowledge.</label>
           </div>
         </form>
       </div>
 
       <!-- Footer buttons -->
       <div class="flex justify-end gap-2 mt-6">
-        <button type="button" onclick="closeModal('modalCertificate')" class="bg-gray-300 hover:bg-gray-400 text-gray-800 px-4 py-1 rounded-md text-xs font-medium transition">CANCEL</button>
-        <button type="submit" class="bg-green-600 hover:bg-green-700 text-white px-4 py-1 rounded-md text-xs font-medium transition">SUBMIT</button>
+        <button type="button" onclick="closeModal('modalCertificate')" class="bg-[#A2C4D9] hover:bg-gray-400 text-gray-900 px-4 py-1.5 rounded-md text-[10px] font-bold">CANCEL</button>
+        <button type="button" onclick="submitRequest('modalCertificate')" class="bg-green-600 hover:bg-green-700 gray-900 px-4 py-1.5 rounded-md text-[10px] font-bold">SUBMIT</button>
       </div>
 
-    </div>
+    </div>F
   </div>
 </div>
 
 
   <!-- MODAL 2: Barangay Clearance -->
   <div id="modalClearance" class="hidden fixed inset-0 flex items-center justify-center z-50 bg-black/50">
-  <div class="bg-[#f5f0e8] border-2 border-black w-[500px] h-[550px] rounded-3xl overflow-hidden flex flex-col">
+  <div class="bg-[#f5f0e8] border-1 border-black w-[500px] h-[550px] rounded-3xl overflow-hidden flex flex-col">
 
-    <!-- Header -->
-    <div class="bg-[#2e5478] flex items-center px-4 py-2 rounded-t-3xl">
-      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSxqDxTyUPRaADhPEUlOlFYUnvFckf-ruIw5Q&sg" class="w-8 h-8 rounded-full border-2 border-white object-cover mr-3">
-      <h1 class="text-white font-bold text-sm">Barangay Daang Bakal</h1>
+     <!-- Header -->
+    <div class="bg-[#2e5478] flex items-center px-4 py-3 rounded-t-3xl">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSxqDxTyUPRaADhPEUlOlFYUnvFckf-ruIw5Q&sg" class="w-10 h-10 rounded-full border-2 border-white object-cover mr-3">
+      <h1 class="text-white font-sans font-bold">Barangay Daang Bakal</h1>
     </div>
 
     <!-- Body -->
@@ -238,41 +245,41 @@ body.modal-open #pageContent {
         <h2 class="text-center text-lg font-bold mb-8 text-gray-800">
           APPLICATION FORM FOR BARANGAY CLEARANCE
         </h2>
-           <br>
+           
         <form class="space-y-8">
           <div class="flex items-center justify-between">
-            <label class="text-sm font-medium text-gray-800 w-[45%]">Length of Residency <span class="text-red-500">*</span></label>
+            <label class="text-sm font-medium text-gray-800 w-[45%]">Length of Residency:</label>
             <input type="text" placeholder="e.g. 5 years" class="w-[60%] border border-black rounded-sm px-3 py-1.5 text-sm focus:ring-blue-500 focus:outline-none">
           </div>
 
           <div class="flex items-center justify-between">
-            <label class="text-sm font-medium text-gray-800 w-[45%]">Valid ID Number <span class="text-red-500">*</span></label>
+            <label class="text-sm font-medium text-gray-800 w-[45%]">Valid ID Number:</label>
             <input type="text" placeholder="e.g. 123456789" class="w-[60%] border border-black rounded-sm px-3 py-1.5 text-sm focus:ring-blue-500 focus:outline-none">
           </div>
 
           <div class="flex items-center justify-between">
-            <label class="text-sm font-medium text-gray-800 w-[45%]">Registered Voter <span class="text-red-500">*</span></label>
+            <label class="text-sm font-medium text-gray-800 w-[45%]">Registered Voter:</span></label>
             <select class="w-[60%] border border-black rounded-sm px-3 py-1.5 text-sm focus:ring-blue-500 focus:outline-none">
               <option>Select</option><option>Yes</option><option>No</option>
             </select>
           </div>
 
           <div class="flex items-center justify-between">
-            <label class="text-sm font-medium text-gray-800 w-[45%]">Purpose of Request <span class="text-red-500">*</span></label>
+            <label class="text-sm font-medium text-gray-800 w-[45%]">Purpose of Request:</span></label>
             <input type="text" placeholder="e.g. Employment Requirement" class="w-[60%] border border-black rounded-sm px-3 py-1.5 text-sm focus:ring-blue-500 focus:outline-none">
           </div>
-
-          <div class="flex items-start mt-4">
-            <input type="checkbox" class="mt-1.5 mr-2 border-gray-400 rounded">
+        <br>
+          <div class="flex items-start mb-6">
+            <input type="checkbox" class="mt-1 mr-2 border-gray-400 rounded">
             <label class="text-xs text-gray-600 leading-snug">I certify that the information provided above is accurate and complete to the best of my knowledge.</label>
           </div>
         </form>
       </div>
 
       <!-- Footer buttons -->
-      <div class="flex justify-end gap-2 mt-6">
+      <div class="flex justify-end gap-2 mt-8">
         <button type="button" onclick="closeModal('modalClearance')" class="bg-gray-300 hover:bg-gray-400 text-gray-800 px-4 py-1 rounded-md text-xs font-medium transition">CANCEL</button>
-        <button type="submit" class="bg-green-600 hover:bg-green-700 text-white px-4 py-1 rounded-md text-xs font-medium transition">SUBMIT</button>
+        <button type="button" onclick="submitRequest('modalClearance')" class="bg-green-600 hover:bg-green-700 text-white px-4 py-1 rounded-md text-xs font-medium transition">SUBMIT</button>
       </div>
 
     </div>
@@ -280,7 +287,7 @@ body.modal-open #pageContent {
 </div>
 <!-- MODAL 3: Indigency -->
 <div id="modalIndigency" class="hidden fixed inset-0 flex items-center justify-center z-50 bg-black/50">
-  <div class="modal-inner bg-[#f5f0e8] border-2 border-black w-[500px] h-[550px] rounded-3xl overflow-hidden">
+  <div class="modal-inner bg-[#f5f0e8] border-1 border-black w-[500px] h-[550px] rounded-3xl overflow-hidden">
     <div class="bg-[#2e5478] flex items-center px-4 py-2 rounded-t-3xl">
       <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSxqDxTyUPRaADhPEUlOlFYUnvFckf-ruIw5Q&sg" class="w-8 h-8 rounded-full border-2 border-white object-cover mr-3">
       <h1 class="text-white font-bold text-sm">Barangay Daang Bakal</h1>
@@ -330,7 +337,7 @@ body.modal-open #pageContent {
 
       <div class="flex justify-end gap-2 mt-4">
         <button type="button" onclick="closeModal('modalIndigency')" class="bg-gray-300 hover:bg-gray-400 text-gray-800 px-4 py-1 rounded-md text-xs font-medium transition">CANCEL</button>
-        <button type="submit" class="bg-green-600 hover:bg-green-700 text-white px-4 py-1 rounded-md text-xs font-medium transition">SUBMIT</button>
+        <button type="button" onclick="submitRequest('modalIndigency')" class="bg-green-600 hover:bg-green-700 text-white px-4 py-1 rounded-md text-xs font-medium transition">SUBMIT</button>
       </div>
     </div>
   </div>
@@ -339,7 +346,7 @@ body.modal-open #pageContent {
 
   <!-- MODAL 4: Barangay Resident -->
   <div id="modalResident" class="hidden fixed inset-0 flex items-center justify-center z-50 bg-black/50">
-  <div class="bg-[#f5f0e8] border-2 border-black w-[500px] h-[550px] rounded-3xl overflow-hidden flex flex-col">
+  <div class="bg-[#f5f0e8] border-1 border-black w-[500px] h-[550px] rounded-3xl overflow-hidden flex flex-col">
 
     <!-- Header -->
     <div class="bg-[#2e5478] flex items-center px-4 py-2 rounded-t-3xl">
@@ -380,7 +387,7 @@ body.modal-open #pageContent {
           </div>
 
           <div class="flex items-start mt-4">
-            <input type="checkbox" class="mt-1.5 mr-2 border-gray-400 rounded">
+            <input type="checkbox" class="mt-2 mr-2 border-gray-400 rounded">
             <label class="text-xs text-gray-600 leading-snug">I certify that the information provided above is accurate and complete to the best of my knowledge.</label>
           </div>
         </form>
@@ -389,12 +396,62 @@ body.modal-open #pageContent {
       <!-- Footer buttons -->
       <div class="flex justify-end gap-2 mt-6">
         <button type="button" onclick="closeModal('modalResident')" class="bg-gray-300 hover:bg-gray-400 text-gray-800 px-4 py-1 rounded-md text-xs font-medium transition">CANCEL</button>
-        <button type="submit" class="bg-green-600 hover:bg-green-700 text-white px-4 py-1 rounded-md text-xs font-medium transition">SUBMIT</button>
+        <button type="button" onclick="submitRequest('modalResident')" class="bg-green-600 hover:bg-green-700 text-white px-4 py-1 rounded-md text-xs font-medium transition">SUBMIT</button>
       </div>
 
+  
     </div>
   </div>
 </div>
+
+<!-- SUCCESS MODAL -->
+<div id="successModal" class="hidden fixed inset-0 bg-black/30 backdrop-blur-none flex items-center justify-center z-50">
+
+  <div class="bg-[#DDE1E5] w-[480px] rounded-2xl shadow-xl p-10 border-2 border-black relative z-50 text-center">
+
+      <div class="flex justify-center mb-4">
+        <div class="w-20 h-20 rounded-full border-4 border-green-700 flex items-center justify-center">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-10 h-10 text-green-700" fill="none" viewBox="0 0 24 24" stroke-width="3" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+          </svg>
+        </div>
+      </div>
+
+      <h2 class="font-extrabold text-xl mb-3 text-black tracking-wide">
+        REQUEST SUBMITTED SUCCESSFULLY!
+      </h2>
+
+      <p class="text-sm text-black leading-relaxed mb-1">
+        Thank you, your Document Request has been received.
+      </p>
+
+      <p class="text-sm text-black leading-relaxed">
+        Your request will be processed within 1 day. You may claim your
+        document at the barangay once it’s ready for release.
+      </p>
+
+      <button onclick="closeSuccessModal()" 
+              class="mt-7 bg-[#A2C4D9] hover:bg-[#94B8CC] px-7 py-1 rounded-2xl text-sm font-semibold text-black transition">
+        CLOSE
+      </button>
+  </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   <!-- =============================== -->
   <!-- JavaScript -->
@@ -433,12 +490,22 @@ body.modal-open #pageContent {
     // Close modal if user clicks on overlay outside modal content
     document.querySelectorAll('[id^="modal"]').forEach(modal => {
       modal.addEventListener('click', (e) => {
-        if (e.target === modal) {
+        if (e.target === modal) {      
           closeModal(modal.id);
         }
       });
     });
 
+      function submitRequest(modalId) {
+    closeModal(modalId);            // close the form modal
+    document.body.classList.add('modal-open'); // keep blur
+    document.getElementById("successModal").classList.remove("hidden");
+  }
+
+  function closeSuccessModal() {
+    document.getElementById("successModal").classList.add("hidden");
+    document.body.classList.remove("modal-open"); // remove blur
+  }
 
   document.addEventListener('DOMContentLoaded', () => {
     const profileIcon = document.getElementById('profileIcon');

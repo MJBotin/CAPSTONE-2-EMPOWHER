@@ -120,13 +120,30 @@
     <button id="requestDocumentBtn" class="bg-[#A2C4D9] hover:bg-[#134573CC] text-[#1e2e3d] font-bold px-4 py-2 rounded-full shadow border-2 border-[#134573CC] text-sm transition duration-200">
       Request a Document →
     </button>
-    <button class="bg-[#A2C4D9] hover:bg-[#134573CC] text-[#1e2e3d] font-bold px-4 py-2 rounded-full shadow border-2 border-[#134573CC] text-sm transition duration-200">
+    <button id="fileComplaintBtn" class="bg-[#A2C4D9] hover:bg-[#134573CC] text-[#1e2e3d] font-bold px-4 py-2 rounded-full shadow border-2 border-[#134573CC] text-sm transition duration-200">
       File a Complaint →
     </button>
   </div>
 
   </main>
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   <!-- =============================== -->
+  <!-- JavaScript -->
+  <!-- =============================== -->
   <script>
     document.addEventListener('DOMContentLoaded', () => {
       const profileIcon = document.getElementById('profileIcon');
@@ -142,7 +159,16 @@
           window.location.href = 'user-document-request';
         });
       }
+
+       const fileComplaintBtn = document.getElementById('fileComplaintBtn');
+      if (fileComplaintBtn) {
+        fileComplaintBtn.addEventListener('click', () => {
+          window.location.href = 'user-complaint';
+        });
+      }
+
     });
+  
   </script>
 
 </body>
