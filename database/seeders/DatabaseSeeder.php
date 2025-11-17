@@ -24,7 +24,11 @@ class DatabaseSeeder extends Seeder
 
         // 2. Now, call the other seeders that depend on this user.
         $this->call([
+            UserSeeder::class,
+            AuditLogSeeder::class,
             AnnouncementSeeder::class,
+            OfficialSeeder::class,
+            DocumentRequestSeeder::class,
             OfficialSeeder::class,
         ]);
     }
