@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="en" data-theme="Project_tracker">
 <head>
   <meta charset="UTF-8">
   <title>Barangay Daang Bakal</title>

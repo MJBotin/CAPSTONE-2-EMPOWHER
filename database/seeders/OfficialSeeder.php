@@ -16,6 +16,7 @@ class OfficialSeeder extends Seeder
             'middle_initial' => 'P.',
             'position' => 'Barangay Captain',
             'display_order' => 1,
+            'created_by' => 1, 
         ]);
 
         Official::create([
@@ -24,6 +25,7 @@ class OfficialSeeder extends Seeder
             'middle_initial' => 'S.',
             'position' => 'Barangay Kagawad',
             'display_order' => 2,
+            'created_by' => 1,
         ]);
 
         Official::create([
@@ -32,6 +34,7 @@ class OfficialSeeder extends Seeder
             'middle_initial' => 'A.',
             'position' => 'Barangay Kagawad',
             'display_order' => 3,
+            'created_by' => 1,
         ]);
 
         Official::create([
@@ -40,6 +43,7 @@ class OfficialSeeder extends Seeder
             'middle_initial' => 'M.',
             'position' => 'SK Chairperson',
             'display_order' => 4,
+            'created_by' => 1,
         ]);
     }
 }

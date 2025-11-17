@@ -3,36 +3,52 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 
-/**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\User>
- */
 class UserFactory extends Factory
 {
+    /**
+     * The current password being used by the factory.
+     */
+    protected static ?string $password;
+
+    /**
+     * Define the model's default state.
+     *
+     * @return array<string, mixed>
+     */
     public function definition(): array
-{
-    return [
-        'last_name' => $this->faker->lastName(),
-        'first_name' => $this->faker->firstName(),
-        'middle_name' => $this->faker->optional()->firstName(),
-        'suffix' => $this->faker->optional()->randomElement(['Jr.', 'Sr.', 'III']),
-        'birthdate' => $this->faker->date('Y-m-d', '2005-01-01'),
-        'place_of_birth' => $this->faker->city(),
-        'gender' => $this->faker->randomElement(['Male', 'Female']),
-        'civil_status' => $this->faker->randomElement(['Single', 'Married', 'Widowed', 'Divorced']),
-        'citizenship' => 'Filipino',
-        'email' => $this->faker->unique()->safeEmail(),
-        'contact_number' => $this->faker->numerify('09#########'),
-        'address' => $this->faker->address(),
-        'username' => $this->faker->unique()->userName(),
-        'password' => Hash::make('Password@123'),
-        'remember_token' => Str::random(10),
-        'user_type' => $this->faker->randomElement(['user', 'admin', 'super admin']),
-    ];
+    {
+        return [
+            'first_name' => fake()->firstName(),
+            'last_name' => fake()->lastName(),
+            'middle_name' => fake()->randomLetter(),
+            'suffix' => null,
+            'username' => fake()->unique()->userName(),
+            'gender' => fake()->randomElement(['Male', 'Female']),
+            'birthdate' => fake()->date(),
+            'civil_status' => fake()->randomElement(['Single', 'Married', 'Widowed']),
+            'place_of_birth' => fake()->city(),
+            'citizenship' => 'Filipino',
+            'contact_number' => fake()->phoneNumber(),
+            'email' => fake()->unique()->safeEmail(),
+            'address' => fake()->address(),
+            'password' => static::$password ??= Hash::make('password'),
+            'user_type' => 'user',
+            'registration_status' => 'approved',
+            'email_verified_at' => now(),
+            'remember_token' => Str::random(10),
+        ];
+    }
+
+    /**
+     * Indicate that the model's email address should be unverified.
+     */
+    public function unverified(): static
+    {
+        return $this->state(fn (array $attributes) => [
+            'email_verified_at' => null,
+        ]);
+    }
 }
-
-}
-
-
