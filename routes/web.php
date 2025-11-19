@@ -50,3 +50,12 @@ Route::get('/user-profile', function () {
     return view('user-profile');
 });
 
+Route::get('/superadmin-dashboard', function () {
+    return view('superadmin-dashboard');
+});
+
+Route::get('/superadmin-user', function () {
+    return view('superadmin-user');
+});
+
+
