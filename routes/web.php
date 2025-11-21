@@ -50,12 +50,15 @@ Route::get('/user-profile', function () {
     return view('user-profile');
 });
 
-Route::get('/superadmin-dashboard', function () {
-    return view('superadmin-dashboard');
-});
-
-Route::get('/superadmin-user', function () {
-    return view('superadmin-user');
-});
+        Route::get('/superadmin-user-view-button', function () {
+            return view('superadmin-user-view-button');
+        });
 
 
+Route::view('/superadmin/dashboard', 'superadmin.dashboard.index');
+
+Route::view('/superadmin/user', 'superadmin.user.index');
+
+Route::view('/superadmin/documents', 'superadmin.documents.index');
+
+Route::view('/superadmin/complaints', 'superadmin.complaints.index');
