@@ -6,136 +6,191 @@
   <title>Complaint Dashboard</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="//unpkg.com/alpinejs" defer></script>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@600;700&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            poppins: ['Poppins', 'sans-serif'],
+            barlow: ['Barlow Semi Condensed', 'sans-serif'],
+          }
+        }
+      }
+    }
+    </script>
 </head>
 
-<body class="bg-[#f6f3ee] font-sans" style="font-family: 'Poppins', sans-serif;">
+<body class="bg-gray-100" style="font-family: 'Poppins', sans-serif;">
 
-  <!-- Top Navbar -->
-  <header class="bg-[#134573CC] text-white flex justify-between items-center px-6 py-3 flex-none">
-    <div class="flex items-center space-x-3">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/Mandaluyong_seal.svg/1024px-Mandaluyong_seal.svg.png" alt="Logo1" class="w-10 h-10">
-      <div class="w-10 h-10 rounded-full overflow-hidden">
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSxqDxTyUPRaADhPEUlOlFYUnvFckf-ruIw5Q&s" 
-             alt="Logo2" 
-             class="w-full h-full object-cover">
-  </div>
-      <div>
-        <h1  style="font-family: 'Barlow Semi Condensed', sans-serif;" class="text-lg font-bold leading-tight">Barangay Daang Bakal</h1>
-        <p  style="font-family: 'Barlow Semi Condensed', sans-serif;" class="text-base font-bold leading-tight">Mandaluyong City</p>
+
+  <!-- TOP NAVBAR -->
+<nav id="top-navbar" class="fixed top-0 left-0 w-full h-[80px] font-barlow bg-[#134573CC] text-white shadow-md z-30 flex items-center justify-between px-6">
+
+
+    
+    <!-- LEFT SIDE: LOGOS + TEXT -->
+    <div class="flex items-center gap-4">
+
+        <!-- LOGOS SIDE BY SIDE (NO OVERLAP) -->
+        <div class="flex items-center space-x-3">
+        <label for="sidebar-toggle" class="cursor-pointer md:hidden">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </label>
+       
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/Mandaluyong_seal.svg/1024px-Mandaluyong_seal.svg.png" alt="Mandaluyong Seal" class="w-12 h-12">
+        <img src="https://tse2.mm.bing.net/th/id/OIP._bP7eQwOSrZjwv-doDDsWAHaHa?rs=1&pid=ImgDetMain&o=7&rm=3" alt="Barangay Seal" class="w-12 h-12 rounded-full object-cover">
+       
+        <div>
+          <h1 class="text-xl font-semibold">Barangay Daang Bakal</h1>
+          <p class="text-lg font-semibold">Mandaluyong City</p>
+        </div>
       </div>
+   
     </div>
 
-    <!-- Notification Bell -->
-    <div class="flex items-center space-x-5">
-      <div x-data="{ open: false }" class="relative">
-        <button @click="open = !open" class="relative p-2 rounded-full hover:bg-gray-300">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-              d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 
-                 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 
-                 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 
-                 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"/>
-          </svg>
-          <span class="absolute top-1 right-1 w-2 h-2 bg-red-500 rounded-full"></span>
-        </button>
+    <!-- RIGHT SIDE: NOTIFICATION + PROFILE -->
+    <div class="flex items-center gap-6">
 
-        <!-- Dropdown Panel -->
-        <div
-          x-show="open"
-          @click.outside="open = false"
-          class="absolute right-0 mt-3 w-80 bg-white shadow-lg rounded-xl border border-gray-100 overflow-hidden z-50">
+        <!-- NOTIFICATION BELL -->
+    
+ <div class="flex items-center space-x-5">
+<div x-data="{ open: false }" class="relative">
+  <!-- Bell Icon Button -->
+  <button @click="open = !open" class="relative p-2 rounded-full hover:bg-gray-100">
+    <!-- Bell Icon -->
+    <svg xmlns="http://www.w3.org/2000/svg" 
+         class="h-6 w-6 text-white-700" 
+         fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+        d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 
+           6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 
+           6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 
+           1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"/>
+    </svg>
 
-          <div class="p-4 border-b">
-            <h3 class="text-lg font-semibold text-gray-700">Notifications</h3>
+  </button>
+
+  <!-- Dropdown Panel -->
+  <div
+    x-show="open"
+    @click.outside="open = false"
+    class="absolute right-0 mt-3 w-80 bg-white shadow-lg rounded-xl border border-gray-100 overflow-hidden z-50">
+
+    <div class="p-4 border-b">
+      <h3 class="text-lg font-semibold text-gray-700">Notifications</h3>
+    </div>
+
+    <div class="max-h-96 overflow-y-auto">
+
+      <!-- Notification Item -->
+      <div class="p-4 border-b hover:bg-gray-50">
+        <div class="flex items-start gap-3">
+          <div class="w-8 h-8 flex items-center justify-center bg-yellow-100 rounded-full">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-yellow-600"
+              fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M12 8v4l3 3" />
+            </svg>
           </div>
-
-          <div class="max-h-96 overflow-y-auto">
-            <div class="p-4 border-b hover:bg-gray-50">
-              <div class="flex items-start gap-3">
-                <div class="w-8 h-8 flex items-center justify-center bg-yellow-100 rounded-full">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-yellow-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3" />
-                  </svg>
-                </div>
-                <div>
-                  <p class="text-sm text-gray-800">
-                    Your complaint (CMP-T8634) has been received and is currently being processed.
-                  </p>
-                  <p class="text-xs text-gray-500 mt-1">Date Filed: 10/22/2025</p>
-                </div>
-              </div>
-            </div>
-
-            <div class="p-4 border-b hover:bg-gray-50">
-              <div class="flex items-start gap-3">
-                <div class="w-8 h-8 flex items-center justify-center bg-gray-200 rounded-full">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                  </svg>
-                </div>
-                <div>
-                  <p class="text-sm text-gray-800">
-                    Your document request is pending. Please wait for admin approval.
-                  </p>
-                  <p class="text-xs text-gray-500 mt-1">Date Requested: 10/20/2025</p>
-                </div>
-              </div>
-            </div>
-
-            <div class="p-4 hover:bg-gray-50">
-              <div class="flex items-start gap-3">
-                <div class="w-8 h-8 flex items-center justify-center bg-green-100 rounded-full">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                  </svg>
-                </div>
-                <div>
-                  <p class="text-sm text-gray-800">
-                    Your document request has been completed. You may now claim it.
-                  </p>
-                  <p class="text-xs text-gray-500 mt-1">Date Completed: 09/15/2025</p>
-                </div>
-              </div>
-            </div>
-
+          <div>
+            <p class="text-sm text-gray-800">
+              Your complaint (CMP-T8634) has been received and is currently being processed.
+            </p>
+            <p class="text-xs text-gray-500 mt-1">Date Filed: 10/22/2025</p>
           </div>
         </div>
       </div>
 
-      <!-- Profile icon -->
-      <div id="profileIcon" class="bg-white text-[#2e5478] p-2 rounded-full hover:bg-gray-100 transition cursor-pointer">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-             stroke-width="2" stroke="currentColor" class="w-5 h-5">
-          <path stroke-linecap="round" stroke-linejoin="round"
-                d="M15.75 9A3.75 3.75 0 1112 5.25 3.75 3.75 0 0115.75 9zM4.5 19.5a8.25 8.25 0 1115 0v.75H4.5v-.75z" />
-        </svg>
+      <!-- Another Item -->
+      <div class="p-4 border-b hover:bg-gray-50">
+        <div class="flex items-start gap-3">
+          <div class="w-8 h-8 flex items-center justify-center bg-gray-200 rounded-full">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-700"
+              fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M5 13l4 4L19 7" />
+            </svg>
+          </div>
+          <div>
+            <p class="text-sm text-gray-800">
+              Your document request is pending. Please wait for admin approval.
+            </p>
+            <p class="text-xs text-gray-500 mt-1">Date Requested: 10/20/2025</p>
+          </div>
+        </div>
       </div>
-    </div>
-  </header>
 
-   <!-- PAGE CONTENT -->
-    <div id="pageContent" class="max-w-6xl mx-auto p-8 mt-1 transition-all duration-300">
-  <!-- Status Cards -->
-  <div class="flex justify-center gap-12 mb-4 text-center">
-    <div class="bg-[#A2C4D9] border-2 border-[#134573CC] rounded-xl py-3 shadow w-60">
-      <h2 class="text-4xl font-bold text-black">1</h2>
-      <p class="font-bold text-black mt-2">PENDING</p>
-    </div>
+      <!-- Completed Item -->
+      <div class="p-4 hover:bg-gray-50">
+        <div class="flex items-start gap-3">
+          <div class="w-8 h-8 flex items-center justify-center bg-green-100 rounded-full">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-green-600"
+              fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M5 13l4 4L19 7" />
+            </svg>
+          </div>
+          <div>
+            <p class="text-sm text-gray-800">
+              Your document request has been completed. You may now claim it.
+            </p>
+            <p class="text-xs text-gray-500 mt-1">Date Completed: 09/15/2025</p>
+          </div>
+        </div>
+      </div>
 
-    <div class="bg-[#A2C4D9] border-2 border-[#134573CC] rounded-xl py-3 shadow w-60">
-      <h2 class="text-4xl font-bold text-black">0</h2>
-      <p class="font-bold text-black mt-2">IN PROGRESS</p>
-    </div>
-
-    <div class="bg-[#A2C4D9] border-2 border-[#134573CC] rounded-xl py-3 shadow w-60">
-      <h2 class="text-4xl font-bold text-black">2</h2>
-      <p class="font-bold text-black mt-2">COMPLETED</p>
     </div>
   </div>
+</div>
 
-    <br>
+<!-- PROFILE SECTION -->
+          <div class="flex items-center pl-6 border-l border-blue-300/30 h-8">
+                       
+           <div class="text-right mr-3 hidden sm:block">
+              <p class="text-md font-bold text-white leading-none">Juan Dela Cruz</p>
+              <p class="text-xs text-blue-200 font-medium mt-1">Resident</p>
+          </div>
+          <div>
+              <a href="http://127.0.0.1:8000/user-profile" id="profileIcon"
+              class="h-10 w-10 rounded-full bg-white/10 border border-white/40 flex items-center justify-center text-white backdrop-blur-sm hover:bg-white/20 transition cursor-pointer">  
+                    <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" 
+                              d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+            </svg>
+        </a>
+                    </div>
+              </div>
+            </div>
+        </div>
+      </div>
+    </nav>
+
+  <!-- PAGE CONTENT -->
+    <div id="pageContent" class="max-w-6xl mx-auto p-8 mt-1 transition-all duration-300 pt-32">
+
+<!-- Status Cards -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 mb-6 ml-40 justify-center w-full">
+  
+  <div class="p-4 rounded-lg shadow-md" style="background-color: #EBF0F4;">
+      <p class="text-3xl font-bold text-black" x-text="stats.totalMale">0</p>
+      <p class="text-medium font-semibold text-black mt-1">PENDING</p>
+  </div>
+
+  <div class="p-4 rounded-lg shadow-md" style="background-color: #EBF0F4;">
+      <p class="text-3xl font-bold text-black" x-text="stats.totalFemale">0</p>
+      <p class="text-medium font-semibold text-black mt-1">IN PROGRESS</p>
+  </div>
+
+  <div class="p-5 rounded-lg shadow-md" style="background-color: #EBF0F4;">
+      <p class="text-3xl font-bold text-black" x-text="stats.totalArchived">0</p>
+      <p class="text-medium font-semibold text-black mt-1">COMPLETED</p>
+  </div>
+
+</div>
+
 
     <!-- Dropdown and Table -->
     <div class="flex justify-between items-center mb-5 relative">
@@ -146,10 +201,10 @@
     </div>
 
     <!-- Table -->
-    <div class="overflow-x-auto mb-6">
-      <table class="w-full border border-gray-300 rounded-md">
-        <thead class="bg-[#205E87] text-white text-sm font-thin text-left">
-          <tr>
+  <div class="bg-white shadow-md rounded-lg overflow-hidden">
+  <table class="table table-zebra w-full text-md">
+    <thead style="background-color: #134573; color: white;">
+      <tr class="text-sm whitespace-nowrap">
             <th class="px-4 py-2 border">TRANSACTION ID</th>
             <th class="px-4 py-2 border">LAST NAME</th>
             <th class="px-4 py-2 border">FIRST NAME</th>

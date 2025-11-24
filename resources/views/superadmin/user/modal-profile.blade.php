@@ -304,12 +304,16 @@
         </div>
       <br>
 
-       <!-- Back Button -->
+       <!--Buttons -->
          
     <div class="flex justify-end mt-40">
-        <button onclick="window.location.href='user-homepage'" 
-              class="bg-[#A2C4D9] hover:bg-[#94B8CC] text-xs text-black font-extrabold px-6 py-1.5 rounded-md transition-all duration-200 shadow-sm">
-        BACK
+        <button onclick="window.location.href='/'" 
+              class="bg-[#A2C4D9] hover:bg-[#94B8CC] text-xs text-black font-extrabold px-6 py-1 rounded-md transition-all duration-200 shadow-sm gap-4 mr-4">
+       CLOSE
+      </button>
+      <button onclick="window.location.href='/'" 
+              class="bg-[#A2C4D9] hover:bg-[#94B8CC] text-xs text-black font-extrabold px-6 py-1 rounded-md transition-all duration-200 shadow-sm">
+       EDIT
       </button>
     </div>
       </div> 

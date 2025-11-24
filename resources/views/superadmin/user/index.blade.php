@@ -93,16 +93,22 @@
         <td class="py-2 px-4">
           <div class="flex justify-start items-center gap-1.5 ml-4">
             <!-- View Icon -->
-            <div class="relative group">
-              <button class="w-6 h-6 flex items-center justify-center">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-5 h-5 fill-blue-600">
-                  <path d="M12 5C6 5 2 12 2 12s4 7 10 7 10-7 10-7-4-7-10-7z"/>
-                  <circle cx="12" cy="12" r="4" fill="white"/>
-                  <circle cx="12" cy="12" r="2" fill="#1d72f1ff"/>
-                </svg>
-              </button>
-              <span class="absolute bottom-full mb-1 left-1/2 transform -translate-x-1/2 px-2 py-1 text-xs text-white bg-gray-800 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">View</span>
-            </div>
+              <div class="relative group">
+
+                <a href="/superadmin/user/profile" class="w-6 h-6 flex items-center justify-center">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-5 h-5 fill-blue-600">
+                    <path d="M12 5C6 5 2 12 2 12s4 7 10 7 10-7 10-7-4-7-10-7z"/>
+                    <circle cx="12" cy="12" r="4" fill="white"/>
+                    <circle cx="12" cy="12" r="2" fill="#1d72f1ff"/>
+                  </svg>
+                </a>
+
+                <span class="absolute bottom-full mb-1 left-1/2 transform -translate-x-1/2 px-2 py-1 text-xs text-white bg-gray-800 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
+                  View
+                </span>
+
+              </div>
+
             <!-- Archive Icon -->
             <div class="relative group">
               <button class="w-6 h-6 flex items-center justify-center">

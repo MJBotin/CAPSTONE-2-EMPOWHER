@@ -62,3 +62,9 @@ Route::view('/superadmin/user', 'superadmin.user.index');
 Route::view('/superadmin/documents', 'superadmin.documents.index');
 
 Route::view('/superadmin/complaints', 'superadmin.complaints.index');
+
+Route::view('/superadmin/user/profile', 'superadmin.user.modal-profile');
+
+Route::get('/', function () {
+    return view('user-welcome');
+});

@@ -10,7 +10,8 @@
   <h1 class="text-3xl font-bold mb-8">DOCUMENT REQUEST</h1>
 
   <!-- CARDS -->
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+
     <div class="p-4 rounded-lg shadow-md" style="background-color: #EBF0F4;">
         <p class="text-3xl font-bold text-black" x-text="stats.totalResidents">0</p>
         <p class="text-medium font-semibold text-black mt-1">TOTAL REQUEST</p>

@@ -1,38 +1,64 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>User Homepage</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script src="//unpkg.com/alpinejs" defer></script>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>USER HOMEPAGE</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="//unpkg.com/alpinejs" defer></script>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@600;700&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            poppins: ['Poppins', 'sans-serif'],
+            barlow: ['Barlow Semi Condensed', 'sans-serif'],
+          }
+        }
+      }
+    }
+    </script>
 </head>
+<body class="font-poppins bg-gray-100 text-slate-800 min-h-screen flex flex-col">
 
-<body class="bg-[#f5efe7] font-sans min-h-screen flex flex-col" style="font-family: 'Poppins', sans-serif;">
 
-    <!-- Top Navbar -->
-  <header class="bg-[#134573CC] text-white flex justify-between items-center px-6 py-3 flex-none">
-    <div class="flex items-center space-x-3">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/Mandaluyong_seal.svg/1024px-Mandaluyong_seal.svg.png" alt="Logo1" class="w-10 h-10">
-      <div class="w-10 h-10 rounded-full overflow-hidden">
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSxqDxTyUPRaADhPEUlOlFYUnvFckf-ruIw5Q&s" 
-             alt="Logo2" 
-             class="w-full h-full object-cover">
-    </div>
-      <div>
-        <h1  style="font-family: 'Barlow Semi Condensed', sans-serif;" class="text-lg font-bold leading-tight">Barangay Daang Bakal</h1>
-        <p  style="font-family: 'Barlow Semi Condensed', sans-serif;" class="text-base font-bold leading-tight">Mandaluyong City</p>
+<!-- TOP NAVBAR -->
+<nav id="top-navbar" class="fixed top-0 left-0 w-full h-[80px] font-barlow bg-[#134573CC] text-white shadow-md z-30 flex items-center justify-between px-6">
+
+
+    
+    <!-- LEFT SIDE: LOGOS + TEXT -->
+    <div class="flex items-center gap-4">
+
+        <!-- LOGOS SIDE BY SIDE (NO OVERLAP) -->
+        <div class="flex items-center space-x-3">
+        <label for="sidebar-toggle" class="cursor-pointer md:hidden">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </label>
+       
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/Mandaluyong_seal.svg/1024px-Mandaluyong_seal.svg.png" alt="Mandaluyong Seal" class="w-12 h-12">
+        <img src="https://tse2.mm.bing.net/th/id/OIP._bP7eQwOSrZjwv-doDDsWAHaHa?rs=1&pid=ImgDetMain&o=7&rm=3" alt="Barangay Seal" class="w-12 h-12 rounded-full object-cover">
+       
+        <div>
+          <h1 class="text-xl font-semibold">Barangay Daang Bakal</h1>
+          <p class="text-lg font-semibold">Mandaluyong City</p>
+        </div>
       </div>
+   
     </div>
 
+    <!-- RIGHT SIDE: NOTIFICATION + PROFILE -->
+    <div class="flex items-center gap-6">
 
-    <!-- Notification Bell -->
+        <!-- NOTIFICATION BELL -->
+    
  <div class="flex items-center space-x-5">
 <div x-data="{ open: false }" class="relative">
   <!-- Bell Icon Button -->
-  <button @click="open = !open" class="relative p-2 rounded-full hover:bg-gray-300">
+  <button @click="open = !open" class="relative p-2 rounded-full hover:bg-gray-100">
     <!-- Bell Icon -->
     <svg xmlns="http://www.w3.org/2000/svg" 
          class="h-6 w-6 text-white-700" 
@@ -44,8 +70,6 @@
            1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"/>
     </svg>
 
-    <!-- Red unread dot -->
-    <span class="absolute top-1 right-1 w-2 h-2 bg-red-500 rounded-full"></span>
   </button>
 
   <!-- Dropdown Panel -->
@@ -121,116 +145,193 @@
   </div>
 </div>
 
-      <!-- Profile icon -->
-      <div id="profileIcon" class="bg-white text-[#2e5478] p-2 rounded-full hover:bg-gray-100 transition cursor-pointer">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-             stroke-width="2" stroke="currentColor" class="w-5 h-5">
-          <path stroke-linecap="round" stroke-linejoin="round"
-                d="M15.75 9A3.75 3.75 0 1112 5.25 3.75 3.75 0 0115.75 9zM4.5 19.5a8.25 8.25 0 1115 0v.75H4.5v-.75z" />
-        </svg>
-      </div>
-    </div>
-  </header>
-
-  <!-- Main Content -->
-  <main class="flex-grow flex flex-col items-center justify-center space-y-12 px-6 py-5">
-
- <!-- Welcome Section (centered but same text alignment) -->
-<section class="w-full max-w-3xl bg-[#A2C4D9] rounded-3xl shadow-md py-3 px-5 border-2 border-[#134573CC] mx-auto">
-  <h2 class="text-5xl font-bold text-[#1e2e3d]">Welcome, Juan Dela Cruz!</h2>
-  <p class="text-black text-sm mt-1 font-"> Access your barangay services quickly and easily here!</p>
-  <div class="flex items-center gap-4 mt-1 text-gray-600 text-m flex-wrap">
-    <div class="flex items-center gap-1 text-black">
-      <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" d="M12 11c.6 0 1.1-.5 1.1-1.1S12.6 8.8 12 8.8s-1.1.5-1.1 1.1.5 1.1 1.1 1.1z"/>
-        <path stroke-linecap="round" stroke-linejoin="round" d="M21 10c0 6.075-9 12-9 12S3 16.075 3 10a9 9 0 1118 0z"/>
-      </svg>
-      <span class="text-xs">45-B Sen. Neptali Gonzales St. Brgy. Daang Bakal Mandaluyong City</span>
-    </div>
-    <div class="flex items-center gap-0.5 text-black">
-       <span class=" w-4 h-6" fill="none" stroke="currentColor" stroke-width="4" viewBox="0 0 28 28">✉</span>
-       <span class="text-xs">RS-00001</span>       
-    </div>
-  </div>
-</section>
-
-    <!-- Recent Activity (scrollable, 3 examples visible) -->
-    <section class="w-full max-w-4xl bg-white shadow-md rounded-xl border p-5 overflow-y-auto" style="max-height: 250px;">
-      <h3 class="flex items-center text-base font-semibold text-[#1e2e3d] mb-1">
-        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mr-2 text-gray-700" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M8 6h13M8 12h13m-13 6h13M3 6h.01M3 12h.01M3 18h.01"/>
-        </svg>
-        Recent Activity
-      </h3>
-
-      <div class="space-y-1.5">
-        <div class="flex justify-between items-center bg-gray-100 p-2.5 rounded-md">
-          <div>
-            <p class="font-normal text-sm">Complaint - Noise Disturbance</p>
-            <p class="text-xs text-gray-500">CMP-T9634 | Date Filed: 10/22/2025</p>
+<!-- PROFILE SECTION -->
+          <div class="flex items-center pl-6 border-l border-blue-300/30 h-8">
+                       
+           <div class="text-right mr-3 hidden sm:block">
+              <p class="text-md font-bold text-white leading-none">Juan Dela Cruz</p>
+              <p class="text-xs text-blue-200 font-medium mt-1">Resident</p>
           </div>
-          <span class="text-sm font-normal text-blue-600">In Progress</span>
-        </div>
-
-        <div class="flex justify-between items-center bg-gray-100 p-2.5 rounded-md">
           <div>
-            <p class="font-normal text-sm">Document Request - Resident Certificate</p>
-            <p class="text-xs text-gray-500">DOC-RC-17391 | Date Requested: 10/20/2025</p>
-          </div>
-          <span class="text-sm font-medium text-yellow-600">Pending</span>
-        </div>
-
-        <div class="flex justify-between items-center bg-gray-100 p-2.5 rounded-md">
-          <div>
-            <p class="font-normal text-sm">Document Request - Barangay Certificate</p>
-            <p class="text-xs text-gray-500">DOC-BC-X2057 | Date Requested: 09/15/2025</p>
-          </div>
-          <span class="text-sm font-medium text-green-600">Completed</span>
-        </div>
-
-        <!-- Hidden items scrollable -->
-        <div class="flex justify-between items-center bg-gray-100 p-2.5 rounded-md">
-          <div>
-            <p class="font-normal text-sm">Document Request - Barangay Clearance</p>
-            <p class="text-xs text-gray-500">DOC-BCL-M4812 | Date Requested: 08/02/2025</p>
-          </div>
-          <span class="text-sm font-medium text-green-600">Completed</span>
+              <a href="http://127.0.0.1:8000/user-profile" id="profileIcon"
+              class="h-10 w-10 rounded-full bg-white/10 border border-white/40 flex items-center justify-center text-white backdrop-blur-sm hover:bg-white/20 transition cursor-pointer">  
+                    <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" 
+                              d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+            </svg>
+        </a>
+                    </div>
+              </div>
+            </div>
         </div>
       </div>
-    </section>
+    </nav>
+  
+   <main class="flex-grow max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-8 space-y-8">
+ 
 
 
- <!-- Action Buttons -->
-<div class="flex justify-center gap-6 mt-4 flex-wrap">
-  <button id="requestDocumentBtn" 
-    class="bg-[#A2C4D9] hover:bg-[#134573CC] text-[#1e2e3d] font-bold px-4 py-2 rounded-full shadow border-2 border-[#134573CC] text-sm transition duration-200 w-60 h-10">
-    Request a Document →
-  </button>
+<div class="relative overflow-hidden rounded-2xl bg-gradient-to-br from-white via-blue-50 to-indigo-50 border border-blue-100 shadow-sm group mt-24">
+            <div class="absolute top-0 right-0 -mt-10 -mr-10 w-64 h-64 bg-white opacity-0 rounded-full blur-3xl"></div>
+           
+            <div class="relative p-8 md:p-10">
+                <h1 class="text-3xl md:text-4xl font-bold mb-3 text-[#134573]">Welcome back, Juan!</h1>
+                    <p class="text-slate-600 text-lg leading-relaxed">
+                        Access your barangay services quickly. Manage requests, file complaints, and view your history all in one place.
+                    </p>
+                    <br>
 
-  <button id="fileComplaintBtn" 
-    class="bg-[#A2C4D9] hover:bg-[#134573CC] text-[#1e2e3d] font-bold px-4 py-2 rounded-full shadow border-2 border-[#134573CC] text-sm transition duration-200 w-60 h-10">
-    File a Complaint →
-  </button>
-</div>
+                <div class="flex flex-wrap gap-4 md:gap-8 text-sm font-medium text-white inline-flex px-6 py-3 rounded-xl shadow-sm backdrop-blur-sm border border-white/40 bg-[#4A6F95]">
+                    <div class="flex items-center gap-2">
+                        <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
+                            <path fill-rule="evenodd" d="M11.54 22.351l.07.04.028.016a.76.76 0 00.723 0l.028-.015.071-.041a16.975 16.975 0 001.144-.742 19.58 19.58 0 002.683-2.282c1.944-1.99 3.963-4.98 3.963-8.827a8.25 8.25 0 00-16.5 0c0 3.846 2.02 6.837 3.963 8.827a19.58 19.58 0 002.682 2.282 16.975 16.975 0 001.145.742zM12 13.5a3.5 3.5 0 100-7 3.5 3.5 0 000 7z" clip-rule="evenodd" />
+                        </svg>
+                        <span>45-B Sen. Neptali Gonzales St.</span>
+                    </div>
+                    <div class="w-px h-4 bg-slate-400 hidden md:block"></div>
+                    <div class="flex items-center gap-2">
+                         <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
+                            <path fill-rule="evenodd" d="M7.5 6a4.5 4.5 0 119 0 4.5 4.5 0 01-9 0zM3.751 20.105a8.25 8.25 0 0116.498 0 .75.75 0 01-.437.695A18.683 18.683 0 0112 22.5c-2.786 0-5.433-.608-7.812-1.7a.75.75 0 01-.437-.695z" clip-rule="evenodd" />
+                        </svg>
+                        <span class="tracking-wider text-white font-bold">RS-00001</span>
+                    </div>
+                </div>
+            </div>
+        </div>
 
 
-  </main>
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+           
+            <div class="lg:col-span-2 space-y-4">
+                <div class="flex items-center justify-between">
+                    <h2 class="text-xl font-bold text-slate-800 flex items-center gap-2">
+                        <svg class="w-6 h-6 text-[#4A6F95]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                        </svg>
+                        Recent Activity
+                    </h2>
+                    <a href="#" class="text-sm text-[#4A6F95] font-bold hover:underline">View All</a>
+                </div>
+
+
+                <div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
+                    <div class="divide-y divide-gray-100">
+                       
+                        <div class="p-5 hover:bg-[#f3f6f9] transition duration-150 group">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h3 class="font-bold text-slate-800 group-hover:text-[#4A6F95] transition">Noise Disturbance Complaint</h3>
+                                    <div class="flex items-center gap-3 mt-1 text-xs text-slate-500">
+                                        <span class="font-mono bg-gray-100 px-1.5 py-0.5 rounded text-gray-600 font-medium">CMP-T9634</span>
+                                        <span>&bull;</span>
+                                        <span>Filed Oct 22, 2025</span>
+                                    </div>
+                                </div>
+                                <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-bold bg-[#4A6F95]/10 text-[#4A6F95]">
+                                    In Progress
+                                </span>
+                            </div>
+                        </div>
+
+
+                        <div class="p-5 hover:bg-[#f3f6f9] transition duration-150 group">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h3 class="font-bold text-slate-800 group-hover:text-[#4A6F95] transition">Request: Resident Certificate</h3>
+                                    <div class="flex items-center gap-3 mt-1 text-xs text-slate-500">
+                                        <span class="font-mono bg-gray-100 px-1.5 py-0.5 rounded text-gray-600 font-medium">DOC-RES-17391</span>
+                                        <span>&bull;</span>
+                                        <span>Req Oct 20, 2025</span>
+                                    </div>
+                                </div>
+                                <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-bold bg-yellow-100 text-yellow-800">
+                                    Pending Approval
+                                </span>
+                            </div>
+                        </div>
+
+
+                        <div class="p-5 hover:bg-[#f3f6f9] transition duration-150 group">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h3 class="font-bold text-slate-800 group-hover:text-[#4A6F95] transition">Request: Barangay Certificate</h3>
+                                    <div class="flex items-center gap-3 mt-1 text-xs text-slate-500">
+                                        <span class="font-mono bg-gray-100 px-1.5 py-0.5 rounded text-gray-600 font-medium">DOC-CER-X2057</span>
+                                        <span>&bull;</span>
+                                        <span>Req Sep 15, 2025</span>
+                                    </div>
+                                </div>
+                                <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-bold bg-green-100 text-green-800">
+                                    Completed
+                                </span>
+                            </div>
+                        </div>
+
+
+                        <div class="p-5 hover:bg-[#f3f6f9] transition duration-150 group">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h3 class="font-bold text-slate-800 group-hover:text-[#4A6F95] transition">Request: Barangay Clearance</h3>
+                                    <div class="flex items-center gap-3 mt-1 text-xs text-slate-500">
+                                        <span class="font-mono bg-gray-100 px-1.5 py-0.5 rounded text-gray-600 font-medium">DOC-CLE-M4812</span>
+                                        <span>&bull;</span>
+                                        <span>Req Aug 02, 2025</span>
+                                    </div>
+                                </div>
+                                <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-bold bg-green-100 text-green-800">
+                                    Completed
+                                </span>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="space-y-4">
+                <h2 class="text-xl font-bold text-slate-800">Quick Actions</h2>
+               
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-4">
+                    <a href="http://127.0.0.1:8000/user-document-request" class="group block p-6 bg-white rounded-xl shadow-sm border border-gray-200 hover:border-[#4A6F95] hover:shadow-md transition-all duration-200 relative overflow-hidden">
+                        <div class="absolute top-0 right-0 -mt-4 -mr-4 w-16 h-16 bg-[#A9C5D6] opacity-20 rounded-full group-hover:scale-150 transition-transform duration-500"></div>
+                       
+                        <div class="relative">
+                            <div class="w-12 h-12 bg-[#e0ecf3] rounded-lg flex items-center justify-center text-[#4A6F95] mb-4 group-hover:bg-[#4A6F95] group-hover:text-white transition-colors">
+                                <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                                </svg>
+                            </div>
+                            <h3 class="text-lg font-bold text-slate-800 group-hover:text-[#4A6F95]">Request Document</h3>
+                            <p class="text-sm text-slate-500 mt-1">Request certificates, and clearances online.</p>
+                        </div>
+                    </a>
+
+
+                    <a href="http://127.0.0.1:8000/user-complaint" class="group block p-6 bg-white rounded-xl shadow-sm border border-gray-200 hover:border-red-500 hover:shadow-md transition-all duration-200 relative overflow-hidden">
+                        <div class="absolute top-0 right-0 -mt-4 -mr-4 w-16 h-16 bg-red-100 opacity-50 rounded-full group-hover:scale-150 transition-transform duration-500"></div>
+                       
+                        <div class="relative">
+                            <div class="w-12 h-12 bg-red-50 rounded-lg flex items-center justify-center text-red-600 mb-4 group-hover:bg-red-600 group-hover:text-white transition-colors">
+                                <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5.882V19.24a1.76 1.76 0 01-3.417.592l-2.147-6.15M18 13a3 3 0 100-6M5.436 13.683A4.001 4.001 0 017 6h1.832c4.1 0 7.625-1.234 9.168-3v14c-1.543-1.766-5.067-3-9.168-3H7a3.988 3.988 0 01-1.564-.317z" />
+                                </svg>
+                            </div>
+                            <h3 class="text-lg font-bold text-slate-800 group-hover:text-red-700">File a Complaint</h3>
+                            <p class="text-sm text-slate-500 mt-1">File issues and problems in the barangay.</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+
+        </div>
+    </main>
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-   <!-- =============================== -->
+  <!-- =============================== -->
   <!-- JavaScript -->
   <!-- =============================== -->
   <script>
@@ -257,6 +358,20 @@
       }
 
     });
+
+      // <!-- Navbar Scroll Effect -->
+
+  const navbar = document.getElementById('top-navbar');
+
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 0) {
+      // Remove transparency when scrolling
+      navbar.style.backgroundColor = '#134573';
+    } else {
+      // Restore original transparent background at top
+      navbar.style.backgroundColor = '#134573CC';
+    }
+  });
   
   </script>
 
